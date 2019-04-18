@@ -32,16 +32,15 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="144" id="E98-fz-GYL">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="144"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="192" id="E98-fz-GYL">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="192"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E98-fz-GYL" id="uV8-Qt-Nvl">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="143.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="191.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="equalCentering" alignment="top" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="K0X-4U-7ZK">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="top" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="K0X-4U-7ZK">
                                                     <rect key="frame" x="15" y="12" width="345" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="text cell" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCQ-H4-6uu">
                                                             <rect key="frame" x="0.0" y="0.0" width="60" height="20.5"/>
@@ -54,7 +53,25 @@
                                                         </imageView>
                                                     </subviews>
                                                 </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Trz-Fm-bP0">
+                                                    <rect key="frame" x="15" y="148" width="30" height="30"/>
+                                                    <state key="normal" title="Like"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9N-yr-t8Q">
+                                                    <rect key="frame" x="315" y="148" width="45" height="30"/>
+                                                    <state key="normal" title="Dislike"/>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Trz-Fm-bP0" firstAttribute="leading" secondItem="uV8-Qt-Nvl" secondAttribute="leading" constant="15" id="22y-YE-fM5"/>
+                                                <constraint firstItem="R9N-yr-t8Q" firstAttribute="top" secondItem="K0X-4U-7ZK" secondAttribute="bottom" constant="8" id="AQW-hV-HEy"/>
+                                                <constraint firstAttribute="trailing" secondItem="R9N-yr-t8Q" secondAttribute="trailing" constant="15" id="R24-8H-WB7"/>
+                                                <constraint firstItem="R9N-yr-t8Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Trz-Fm-bP0" secondAttribute="trailing" constant="8" symbolic="YES" id="Yxn-5w-BI1"/>
+                                                <constraint firstItem="K0X-4U-7ZK" firstAttribute="top" secondItem="uV8-Qt-Nvl" secondAttribute="top" constant="12" id="h61-ht-vYU"/>
+                                                <constraint firstItem="K0X-4U-7ZK" firstAttribute="centerX" secondItem="uV8-Qt-Nvl" secondAttribute="centerX" id="iCS-gq-U8P"/>
+                                                <constraint firstItem="R9N-yr-t8Q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uV8-Qt-Nvl" secondAttribute="leading" symbolic="YES" id="ps2-lX-YJs"/>
+                                                <constraint firstItem="Trz-Fm-bP0" firstAttribute="top" secondItem="K0X-4U-7ZK" secondAttribute="bottom" constant="8" id="vCo-FG-APv"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
