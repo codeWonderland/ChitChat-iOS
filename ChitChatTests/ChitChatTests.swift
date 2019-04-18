@@ -19,9 +19,26 @@ class ChitChatTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func testCreateMessage() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let message = Message(json: [
+            "_id": "5cb8beec71724862a49a3990",
+            "client": "amelia.payne@mymail.champlain.edu",
+            "date": "Thu, 18 Apr 2019 18:16:12 GMT",
+            "dislikes": 1,
+            "ip": "184.171.151.100",
+            "likes": 0,
+            "loc": [
+                "0.0",
+                "0.0"
+            ],
+            "message": "Your hopes and dreams..."
+        ])
+        
+        XCTAssert(message?._id == "5cb8beec71724862a49a3990")
+        XCTAssert(message?.message == "Your hopes and dreams...")
     }
 
     func testPerformanceExample() {

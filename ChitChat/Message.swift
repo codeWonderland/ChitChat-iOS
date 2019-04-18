@@ -22,7 +22,7 @@ class Message {
         let client = json["client"] as? String,
         let date = json["date"] as? String,
         let dislikes = json["dislikes"] as? Int,
-        let likes = json["liks"] as? Int,
+        let likes = json["likes"] as? Int,
         let loc = json["loc"] as? [String],
         let message = json["message"] as? String
             else {
