@@ -16,6 +16,7 @@ class Message {
     var likes: Int
     var loc: [String]
     var message: String
+    var responded: Bool = false
     
     init?(json: [String: Any]) {
         guard let _id = json["_id"] as? String,
@@ -36,5 +37,22 @@ class Message {
         self.likes = likes
         self.loc = loc
         self.message = message
+    }
+    
+    func flagResponded() {
+        responded = true
+    }
+    
+    func like(good: Bool) {
+        if !responded {
+            responded = true
+            
+            if good {
+                likes += 1
+                
+            } else {
+                dislikes += 1
+            }
+        }
     }
 }
