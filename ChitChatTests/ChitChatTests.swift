@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import ChitChat
+import Alamofire
 
 class ChitChatTests: XCTestCase {
 
@@ -55,6 +56,22 @@ class ChitChatTests: XCTestCase {
         
         XCTAssert(message?.responded == true)
         XCTAssert(message?.likes == 1)
+    }
+    
+    func testNetworkRequest() {
+        Alamofire.request("https://www.stepoutnyc.com/chitchat?key=c9be0e9b-6265-41c6-9090-fd83f6e4537e&client=shawn.fortin@mymail.champlain.edu").responseJSON { response in
+            print("Request: \(String(describing: response.request))")   // original url request
+            print("Response: \(String(describing: response.response))") // http url response
+            print("Result: \(response.result)")                         // response serialization result
+            
+            if let json = response.result.value {
+                print("JSON: \(json)") // serialized json response
+            }
+            
+            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                print("Data: \(utf8Text)") // original server data as UTF8 string
+            }
+        }
     }
 
     func testPerformanceExample() {
