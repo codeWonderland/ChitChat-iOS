@@ -34,9 +34,14 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     func sendMessage(message: String) {
-        netRequest(path: "", method: .post, message: message) { response in
-            if let json = response.result.value as? [String: Any] {
-                print(json)
+        let escapedMessage = message.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        
+        netRequest(path: "", method: .post, message: escapedMessage) { response in
+            if let json = response.result.value as? [String: Any],
+                let resp = json["code"] as? Int {
+                if resp == 1 {
+                    self.getMessages()
+                }
             }
         }
     }
