@@ -19,8 +19,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view, typically from a nib.
         self.table.delegate = self
         self.table.dataSource = self
+        table.rowHeight = UITableView.automaticDimension
+        table.estimatedRowHeight = 200
         getMessages()
-        sendMessage(message: "hello world")
+        //sendMessage(message: "hello world")
     }
     
     func getMessages() {
@@ -79,6 +81,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let message = mMessages[indexPath.row]
         print(message.message)
         (cell.contentView.viewWithTag(1) as! UILabel).text = message.message
+        (cell.contentView.viewWithTag(3) as! UILabel).text = "\(message.loc[0]), \(message.loc[1])"
         return cell
     }
 
