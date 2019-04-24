@@ -43,7 +43,7 @@ class Message {
         responded = true
     }
     
-    func like(good: Bool) {
+    func like(good: Bool) -> Bool {
         if !responded {
             responded = true
             
@@ -53,6 +53,10 @@ class Message {
             } else {
                 dislikes += 1
             }
+            
+            return true
         }
+        
+        return false
     }
 }
