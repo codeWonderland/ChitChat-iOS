@@ -20,6 +20,8 @@
 		A7741048226F97680036533F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7741047226F97680036533F /* Message.swift */; };
 		A7741049226F97700036533F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7741047226F97680036533F /* Message.swift */; };
 		A774104B226F978E0036533F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A774104A226F978E0036533F /* Alamofire.framework */; };
+		A7C8ECB72270E51900B77504 /* MapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8ECB62270E51900B77504 /* MapDetailViewController.swift */; };
+		A7C8ECB82270E51900B77504 /* MapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8ECB62270E51900B77504 /* MapDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,7 @@
 		A7741045226F96DD0036533F /* Pods_ChitChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ChitChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7741047226F97680036533F /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A774104A226F978E0036533F /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7C8ECB62270E51900B77504 /* MapDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDetailViewController.swift; sourceTree = "<group>"; };
 		B4C193FECBF1E9F83376EB2B /* Pods-ChitChat-ChitChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChitChat-ChitChatTests.debug.xcconfig"; path = "Target Support Files/Pods-ChitChat-ChitChatTests/Pods-ChitChat-ChitChatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D700D39EB9C4B46D7DA4D655 /* Pods_ChitChat_ChitChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChitChat_ChitChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -111,6 +114,7 @@
 		A731D9ED226658E20030408B /* ChitChat */ = {
 			isa = PBXGroup;
 			children = (
+				A7C8ECB62270E51900B77504 /* MapDetailViewController.swift */,
 				A7741047226F97680036533F /* Message.swift */,
 				A731D9EE226658E20030408B /* AppDelegate.swift */,
 				A731D9F0226658E20030408B /* ViewController.swift */,
@@ -381,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7C8ECB72270E51900B77504 /* MapDetailViewController.swift in Sources */,
 				A7741048226F97680036533F /* Message.swift in Sources */,
 				A731D9F1226658E20030408B /* ViewController.swift in Sources */,
 				A731D9EF226658E20030408B /* AppDelegate.swift in Sources */,
@@ -393,6 +398,7 @@
 			files = (
 				A731DA04226658E30030408B /* ChitChatTests.swift in Sources */,
 				A7741049226F97700036533F /* Message.swift in Sources */,
+				A7C8ECB82270E51900B77504 /* MapDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
