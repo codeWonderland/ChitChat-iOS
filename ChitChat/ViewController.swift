@@ -9,13 +9,16 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var table: UITableView!
     var mMessages: [Message] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        self.table.delegate = self
+        self.table.dataSource = self
         getMessages()
         sendMessage(message: "hello world")
     }
@@ -27,6 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate {
                 for entry in messages {
                     if let message = Message(json: entry) {
                         self.mMessages.append(message)
+                        self.table.reloadData()
                     }
                 }
             }
@@ -55,6 +59,22 @@ class ViewController: UIViewController, UITableViewDelegate {
             url,
             method: method
         ).responseJSON(completionHandler: cb)
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return mMessages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
+        let message = mMessages[indexPath.row]
+        print(message.message)
+        (cell.contentView.viewWithTag(1) as! UILabel).text = message.message
+        return cell
     }
 
 }
