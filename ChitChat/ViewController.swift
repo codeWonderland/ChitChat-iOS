@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var table: UITableView!
     var mMessages: [Message] = []
+    var mLikeIds: [String] = []
     @IBOutlet weak var mMessageField: UITextField!
     let refresh = UIRefreshControl()
     
@@ -24,6 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // pull to refresh from: https://medium.com/anantha-krishnan-k-g/pull-to-refresh-how-to-implement-f915743703f8
         refresh.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         self.table.addSubview(self.refresh)
+        mLikeIds = UserDefaults.standard.object(forKey: "liked") as? [String] ?? [String]()
         getMessages()
     }
     
@@ -125,17 +127,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func like(_ sender: Any) {
         if let cell = (sender as! UIButton).superview?.superview as? UITableViewCell {
-            likeMessage(message: mMessages[(table.indexPath(for: cell)?.row)!], good: true)
-            mMessages[(table.indexPath(for: cell)?.row)!].like(good: true)
-            table.reloadData()
+            if !mLikeIds.contains(mMessages[(table.indexPath(for: cell)?.row)!]._id) {
+                likeMessage(message: mMessages[(table.indexPath(for: cell)?.row)!], good: true)
+                mMessages[(table.indexPath(for: cell)?.row)!].like(good: true)
+                mLikeIds.append(mMessages[(table.indexPath(for: cell)?.row)!]._id)
+                UserDefaults.standard.set(mLikeIds, forKey: "liked")
+                table.reloadData()
+            }
         }
     }
     
     @IBAction func dislike(_ sender: Any) {
         if let cell = (sender as! UIButton).superview?.superview as? UITableViewCell {
-            likeMessage(message: mMessages[(table.indexPath(for: cell)?.row)!], good: false)
-            mMessages[(table.indexPath(for: cell)?.row)!].like(good: false)
-            table.reloadData()
+            if !mLikeIds.contains(mMessages[(table.indexPath(for: cell)?.row)!]._id) {
+                likeMessage(message: mMessages[(table.indexPath(for: cell)?.row)!], good: false)
+                mMessages[(table.indexPath(for: cell)?.row)!].like(good: false)
+                mLikeIds.append(mMessages[(table.indexPath(for: cell)?.row)!]._id)
+                UserDefaults.standard.set(mLikeIds, forKey: "liked")
+                table.reloadData()
+            }
         }
     }
     
