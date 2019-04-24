@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import MapKit
 
 class MapDetailViewController: UIViewController {
     var latitude: Double!
     var longitude: Double!
-
+    @IBOutlet weak var map: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(latitude)
+        map.centerCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         // Do any additional setup after loading the view.
     }
     

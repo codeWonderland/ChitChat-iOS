@@ -118,8 +118,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    
-
     @IBAction func like(_ sender: Any) {
         if let cell = (sender as! UIButton).superview?.superview as? UITableViewCell {
             mMessages[(table.indexPath(for: cell)?.row)!].like(good: true)
