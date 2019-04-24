@@ -20,11 +20,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.table.delegate = self
         self.table.dataSource = self
         getMessages()
-        sendMessage(message: "hello world")
     }
     
     func getMessages() {
-        netRequest(path: "", method: .get, message: nil) { response in
+        netRequest(
+            path: "",
+            method: .get,
+            message: nil
+        ) { response in
             if let json = response.result.value as? [String: Any],
                 let messages = json["messages"] as? [[String: Any]] {
                 for entry in messages {
@@ -40,11 +43,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func sendMessage(message: String) {
         let escapedMessage = message.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         
-        netRequest(path: "", method: .post, message: escapedMessage) { response in
+        netRequest(
+            path: "",
+            method: .post,
+            message: escapedMessage
+        ) { response in
             if let json = response.result.value as? [String: Any],
                 let resp = json["code"] as? Int {
                 if resp == 1 {
                     self.getMessages()
+                }
+            }
+        }
+    }
+    
+    func likeMessage(message: Message, good: Bool) {
+        if message.like(good: good) {
+            netRequest(path: "/\(good ? "like" : "dislike")/\(message._id)", method: .get, message: nil) { response in
+                if let json = response.result.value as? [String: Any],
+                    let resp = json["code"] as? Int {
+                    if resp == 1 {
+                        self.getMessages()
+                    }
                 }
             }
         }
