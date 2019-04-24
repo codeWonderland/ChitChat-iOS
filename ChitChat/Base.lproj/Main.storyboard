@@ -56,10 +56,16 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Trz-Fm-bP0">
                                                     <rect key="frame" x="15" y="281" width="30" height="30"/>
                                                     <state key="normal" title="Like"/>
+                                                    <connections>
+                                                        <action selector="like:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fdw-1z-3Mx"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9N-yr-t8Q">
                                                     <rect key="frame" x="315" y="281" width="45" height="30"/>
                                                     <state key="normal" title="Dislike"/>
+                                                    <connections>
+                                                        <action selector="dislike:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AHb-Qp-NP4"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fW-mp-Qy2">
                                                     <rect key="frame" x="0.0" y="11" width="375" height="20.5"/>

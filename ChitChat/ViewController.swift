@@ -117,6 +117,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             next.longitude = Double (message.loc[1])
         }
     }
+    
+    
 
+    @IBAction func like(_ sender: Any) {
+        if let cell = (sender as! UIButton).superview?.superview as? UITableViewCell {
+            mMessages[(table.indexPath(for: cell)?.row)!].like(good: true)
+            table.reloadData()
+        }
+    }
+    
+    @IBAction func dislike(_ sender: Any) {
+        if let cell = (sender as! UIButton).superview?.superview as? UITableViewCell {
+            mMessages[(table.indexPath(for: cell)?.row)!].like(good: false)
+            table.reloadData()
+        }
+    }
 }
 
