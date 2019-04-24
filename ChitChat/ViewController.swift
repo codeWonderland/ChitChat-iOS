@@ -110,7 +110,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMap" {
-            print("show map")
             let next = segue.destination as! MapDetailViewController
             let message = mMessages[(table.indexPathForSelectedRow?.row)!]
             next.latitude = Double (message.loc[0])
