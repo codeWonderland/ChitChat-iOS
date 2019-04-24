@@ -20,8 +20,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Do any additional setup after loading the view, typically from a nib.
         self.table.delegate = self
         self.table.dataSource = self
-        table.rowHeight = UITableView.automaticDimension
-        table.estimatedRowHeight = 200
         getMessages()
         //sendMessage(message: "hello world")
     }
