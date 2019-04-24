@@ -10,26 +10,25 @@ import UIKit
 import Alamofire
 
 class ViewController: UIViewController, UITableViewDelegate {
+    
+    var mMessages: [Message] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        netRequest()
+        getMessages()
     }
     
-    func netRequest() {
+    func getMessages() {
         Alamofire.request("https://www.stepoutnyc.com/chitchat?key=c9be0e9b-6265-41c6-9090-fd83f6e4537e&client=shawn.fortin@mymail.champlain.edu").responseJSON { response in
-            if let json = response.result.value {
-                for entry in json["messages"] {
-                    if let message = Message(entry) {
-                        print(message.message)
+            if let json = response.result.value as? [String: Any],
+                let messages = json["messages"] as? [[String: Any]] {
+                for entry in messages {
+                    if let message = Message(json: entry) {
+                        self.mMessages.append(message)
                     }
                 }
-            }
-            
-            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                print("Data: \(utf8Text)") // original server data as UTF8 string
             }
         }
     }
