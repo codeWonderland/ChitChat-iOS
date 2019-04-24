@@ -19,7 +19,6 @@ class MapDetailViewController: UIViewController {
         map.centerCoordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        annotation.title = "Message Location"
         map.addAnnotation(annotation)
         // Do any additional setup after loading the view.
     }

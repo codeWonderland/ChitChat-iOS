@@ -103,7 +103,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         (cell.contentView.viewWithTag(1) as! UILabel).text = message.message
         (cell.contentView.viewWithTag(4) as! UILabel).text = "\(message.likes)"
         (cell.contentView.viewWithTag(5) as! UILabel).text = "\(message.dislikes)"
-        (cell.contentView.viewWithTag(3) as! UILabel).text = "\(message.loc[0]), \(message.loc[1])"
+        (cell.contentView.viewWithTag(3) as! UILabel).text = "\(message.loc[1]), \(message.loc[0])"
         return cell
     }
     
@@ -111,8 +111,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if segue.identifier == "showMap" {
             let next = segue.destination as! MapDetailViewController
             let message = mMessages[(table.indexPathForSelectedRow?.row)!]
-            next.latitude = Double (message.loc[0])
-            next.longitude = Double (message.loc[1])
+            next.latitude = Double (message.loc[1])
+            next.longitude = Double (message.loc[0])
         }
     }
     
