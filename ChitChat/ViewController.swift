@@ -14,14 +14,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var table: UITableView!
     var mMessages: [Message] = []
     @IBOutlet weak var mMessageField: UITextField!
+    let refresh = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.table.delegate = self
         self.table.dataSource = self
+        // pull to refresh from: https://medium.com/anantha-krishnan-k-g/pull-to-refresh-how-to-implement-f915743703f8
+        refresh.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        self.table.addSubview(self.refresh)
         getMessages()
-        //sendMessage(message: "hello world")
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        getMessages()
+        refreshControl.endRefreshing()
     }
     
     func getMessages() {
@@ -99,7 +107,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
         let message = mMessages[indexPath.row]
-        print(message.message)
         (cell.contentView.viewWithTag(1) as! UILabel).text = message.message
         (cell.contentView.viewWithTag(4) as! UILabel).text = "\(message.likes)"
         (cell.contentView.viewWithTag(5) as! UILabel).text = "\(message.dislikes)"
