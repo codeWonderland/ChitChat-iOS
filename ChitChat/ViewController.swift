@@ -13,7 +13,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var table: UITableView!
     var mMessages: [Message] = []
-
+    @IBOutlet weak var mMessageField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -131,6 +132,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             mMessages[(table.indexPath(for: cell)?.row)!].like(good: false)
             table.reloadData()
         }
+    }
+    
+    @IBAction func send(_ sender: Any) {
+        sendMessage(message: mMessageField.text ?? "")
     }
 }
 
