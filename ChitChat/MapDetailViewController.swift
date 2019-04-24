@@ -9,10 +9,12 @@
 import UIKit
 
 class MapDetailViewController: UIViewController {
+    var latitude: Double!
+    var longitude: Double!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(latitude)
         // Do any additional setup after loading the view.
     }
     

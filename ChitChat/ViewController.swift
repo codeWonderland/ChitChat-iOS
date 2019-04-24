@@ -107,6 +107,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         (cell.contentView.viewWithTag(3) as! UILabel).text = "\(message.loc[0]), \(message.loc[1])"
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMap" {
+            print("show map")
+            let next = segue.destination as! MapDetailViewController
+            let message = mMessages[(table.indexPathForSelectedRow?.row)!]
+            next.latitude = Double (message.loc[0])
+            next.longitude = Double (message.loc[1])
+        }
+    }
 
 }
 

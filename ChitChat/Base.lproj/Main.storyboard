@@ -101,7 +101,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="NZS-ZB-nsh" kind="show" identifier="showMap" trigger="accessoryAction" id="aTb-of-jbd"/>
+                                            <segue destination="NZS-ZB-nsh" kind="show" identifier="showMap" id="Gia-gz-YIu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
