@@ -102,6 +102,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let message = mMessages[indexPath.row]
         print(message.message)
         (cell.contentView.viewWithTag(1) as! UILabel).text = message.message
+        (cell.contentView.viewWithTag(4) as! UILabel).text = "\(message.likes)"
+        (cell.contentView.viewWithTag(5) as! UILabel).text = "\(message.dislikes)"
         (cell.contentView.viewWithTag(3) as! UILabel).text = "\(message.loc[0]), \(message.loc[1])"
         return cell
     }
