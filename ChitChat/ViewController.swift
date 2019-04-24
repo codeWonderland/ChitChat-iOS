@@ -119,6 +119,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func like(_ sender: Any) {
         if let cell = (sender as! UIButton).superview?.superview as? UITableViewCell {
+            likeMessage(message: mMessages[(table.indexPath(for: cell)?.row)!], good: true)
             mMessages[(table.indexPath(for: cell)?.row)!].like(good: true)
             table.reloadData()
         }
@@ -126,6 +127,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func dislike(_ sender: Any) {
         if let cell = (sender as! UIButton).superview?.superview as? UITableViewCell {
+            likeMessage(message: mMessages[(table.indexPath(for: cell)?.row)!], good: false)
             mMessages[(table.indexPath(for: cell)?.row)!].like(good: false)
             table.reloadData()
         }
