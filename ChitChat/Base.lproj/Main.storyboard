@@ -111,7 +111,6 @@
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="15Z-J0-KAJ" appends="YES" id="hUV-rw-jm5"/>
                                             <segue destination="NZS-ZB-nsh" kind="show" identifier="showMap" id="Gia-gz-YIu"/>
                                         </connections>
                                     </tableViewCell>
@@ -139,11 +138,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="15Z-J0-KAJ">
-                    <connections>
-                        <action selector="handleLikeDislikeSwipe:" destination="BYZ-38-t0r" id="Ks1-h1-Edd"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1071.2" y="133.5832083958021"/>
         </scene>

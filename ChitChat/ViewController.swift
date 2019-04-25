@@ -114,6 +114,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             method: method
         ).responseJSON(completionHandler: cb)
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let like = UITableViewRowAction(style: .normal, title: "Like", handler: {(action, indexPath) in
+            if !self.mLikeIds.contains(self.mMessages[indexPath.row]._id) {
+                self.likeMessage(message: self.mMessages[indexPath.row], good: true)
+            }
+        })
+        
+        let dislike = UITableViewRowAction(style: .normal, title: "Dislike", handler: {(action, indexPath) in
+            if !self.mLikeIds.contains(self.mMessages[indexPath.row]._id) {
+                self.likeMessage(message: self.mMessages[indexPath.row], good: false)
+            }
+        })
+        
+        like.backgroundColor = UIColor.green
+        dislike.backgroundColor = UIColor.red
+        
+        return [like, dislike]
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -154,17 +173,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let cell = (sender as! UIButton).superview?.superview as? UITableViewCell {
             if !mLikeIds.contains(mMessages[(table.indexPath(for: cell)?.row)!]._id) {
                 likeMessage(message: mMessages[(table.indexPath(for: cell)?.row)!], good: false)
-            }
-        }
-    }
-
-    @IBAction func handleLikeDislikeSwipe(_ sender: UISwipeGestureRecognizer) {
-        let location = sender.location(in: self.table)
-        if let indexPath = self.table.indexPathForRow(at: location) {
-            if sender.direction == .left {
-                likeMessage(message: mMessages[indexPath.row], good: true)
-            } else if sender.direction == .right {
-                likeMessage(message: mMessages[indexPath.row], good: false)
             }
         }
     }
