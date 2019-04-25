@@ -145,7 +145,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
         let message = mMessages[indexPath.row]
-        (cell.contentView.viewWithTag(1) as! UILabel).text = message.message
+        
+        // URL DETECTOR FROM : https://www.hackingwithswift.com/example-code/strings/how-to-detect-a-url-in-a-string-using-nsdatadetector
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let matches = detector.matches(
+            in: message.message,
+            options: [],
+            range: NSRange(
+                location: 0,
+                length: message.message.utf16.count
+            )
+        )
+        
+        for match in matches {
+            guard let range = Range(match.range, in: message.message) else { continue }
+            
+            let url: URL = URL(string: String(message.message[range]))!
+            let data: Data = try! Data(contentsOf: url)
+                
+            (cell.contentView.viewWithTag(2) as! UIImageView).image = UIImage.init(data: data)
+        }
+        
+        if matches.count == 0 {
+            (cell.contentView.viewWithTag(1) as! UILabel).text = message.message
+        }
+        
         (cell.contentView.viewWithTag(4) as! UILabel).text = "\(message.likes)"
         (cell.contentView.viewWithTag(5) as! UILabel).text = "\(message.dislikes)"
         (cell.contentView.viewWithTag(3) as! UILabel).text = "\(message.loc[1]), \(message.loc[0])"
