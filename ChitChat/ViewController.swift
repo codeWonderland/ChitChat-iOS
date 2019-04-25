@@ -84,7 +84,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 if let json = response.result.value as? [String: Any],
                     let resp = json["code"] as? Int {
                     if resp == 1 {
-                        self.getMessages()
+                        self.mLikeIds.append(message._id)
+                        UserDefaults.standard.set(self.mLikeIds, forKey: "liked")
+                        
+                        self.table.reloadData()
                     }
                 }
             }
@@ -139,10 +142,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let cell = (sender as! UIButton).superview?.superview as? UITableViewCell {
             if !mLikeIds.contains(mMessages[(table.indexPath(for: cell)?.row)!]._id) {
                 likeMessage(message: mMessages[(table.indexPath(for: cell)?.row)!], good: true)
-                mMessages[(table.indexPath(for: cell)?.row)!].like(good: true)
-                mLikeIds.append(mMessages[(table.indexPath(for: cell)?.row)!]._id)
-                UserDefaults.standard.set(mLikeIds, forKey: "liked")
-                table.reloadData()
             }
         }
     }
@@ -151,10 +150,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let cell = (sender as! UIButton).superview?.superview as? UITableViewCell {
             if !mLikeIds.contains(mMessages[(table.indexPath(for: cell)?.row)!]._id) {
                 likeMessage(message: mMessages[(table.indexPath(for: cell)?.row)!], good: false)
-                mMessages[(table.indexPath(for: cell)?.row)!].like(good: false)
-                mLikeIds.append(mMessages[(table.indexPath(for: cell)?.row)!]._id)
-                UserDefaults.standard.set(mLikeIds, forKey: "liked")
-                table.reloadData()
             }
         }
     }
