@@ -181,6 +181,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
+
+    @IBAction func handleLikeDislikeSwipe(_ sender: UISwipeGestureRecognizer) {
+        let location = sender.location(in: self.table)
+        if let indexPath = self.table.indexPathForRow(at: location) {
+            if sender.direction == .left {
+                likeMessage(message: mMessages[indexPath.row], good: true)
+            } else if sender.direction == .right {
+                likeMessage(message: mMessages[indexPath.row], good: false)
+            }
+        }
+    }
     
     @IBAction func send(_ sender: Any) {
         sendMessage(message: mMessageField.text ?? "")
