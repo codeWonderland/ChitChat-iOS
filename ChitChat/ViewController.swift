@@ -50,12 +50,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ) { response in
             if let json = response.result.value as? [String: Any],
                 let messages = json["messages"] as? [[String: Any]] {
+                self.mMessages = []
                 for entry in messages {
                     if let message = Message(json: entry) {
                         self.mMessages.append(message)
-                        self.table.reloadData()
                     }
                 }
+                
+                self.table.reloadData()
             }
         }
     }
@@ -69,10 +71,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             method: .post,
             message: escapedMessage, parameters: "&lat=\(location?.latitude as? Double ?? 0.0)&lon=\(location?.longitude as? Double ?? 0.0)"
         ) { response in
-            if let json = response.result.value as? [String: Any],
-                let resp = json["code"] as? Int {
-                if resp == 1 {
-                    self.getMessages()
+            if let json = response.result.value as? [String: Any] {
+                if let success = json["code"] as? String {
+                    if success == "1" {
+                        self.getMessages()
+                    }
                 }
             }
         }
@@ -81,13 +84,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func likeMessage(message: Message, good: Bool) {
         if message.like(good: good) {
             netRequest(path: "/\(good ? "like" : "dislike")/\(message._id)", method: .get, message: nil, parameters: "") { response in
-                if let json = response.result.value as? [String: Any],
-                    let resp = json["code"] as? Int {
-                    if resp == 1 {
-                        self.mLikeIds.append(message._id)
-                        UserDefaults.standard.set(self.mLikeIds, forKey: "liked")
-                        
-                        self.table.reloadData()
+                if let json = response.result.value as? [String: Any] {
+                    if let success = json["code"] as? String {
+                        if success == "1" {
+                            self.mLikeIds.append(message._id)
+                            UserDefaults.standard.set(self.mLikeIds, forKey: "liked")
+                            
+                            self.getMessages()
+                        }
                     }
                 }
             }
@@ -167,6 +171,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func send(_ sender: Any) {
         sendMessage(message: mMessageField.text ?? "")
+        mMessageField.text = ""
     }
 }
 
